@@ -3,6 +3,7 @@ import { Statistics } from './Statistics';
 import { FeedbackOptions } from './FeedbackOptions';
 import { Notification } from './Notification';
 import { useState } from 'react';
+// import { useReducer } from 'react';
 
 export const App = () => {
   const [good, setGood] = useState(0);
@@ -17,6 +18,23 @@ export const App = () => {
   const onLeaveFeedBack = state => {
     stateMap[state](prevState => prevState + 1);
   };
+
+  // варіант через useReducer:
+  // const options = {
+  //   good: 0,
+  //   neutral: 0,
+  //   bad: 0,
+  // };
+  // const optionsTags = Object.keys(options);
+  // const reducer = (state, action) => {
+  //   const { type, payload } = action;
+  //   return { ...state, [type]: state[type] + payload };
+  // };
+  // const [{ good, bad, neutral }, dispatch] = useReducer(reducer, options);
+
+  // const onLeaveFeedBack = state => {
+  //   dispatch({ type: state, payload: 1 });
+  // };
 
   const countTotalFeedback = () => {
     return good + bad + neutral;
